@@ -6,22 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>פורטל ניהול - משרד רו"ח משה עציץ</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/design-system.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 </head>
 
 <body>
     <!-- Login Screen -->
     <div id="loginScreen" class="login-screen">
         <div class="login-box">
-            <h1><i class="fa-solid fa-lock"></i> פורטל ניהול</h1>
+            <div class="login-icon"><i data-lucide="lock" class="icon-xl"></i></div>
+            <h1>פורטל ניהול</h1>
             <p>משרד רו"ח משה עציץ</p>
             <form onsubmit="login(); return false;">
                 <input type="password" id="passwordInput" placeholder="הזן סיסמה" autocomplete="current-password">
             </form>
             <div id="loginError" class="login-error">סיסמה שגויה</div>
-            <button class="btn btn-primary" onclick="login()" style="width: 100%;">
-                <i class="fa-solid fa-rocket"></i> כניסה
+            <button class="btn btn-primary w-full" onclick="login()">
+                <i data-lucide="zap" class="icon-sm"></i> כניסה
             </button>
         </div>
     </div>
@@ -31,27 +33,23 @@
         <!-- Persistent Navbar -->
         <nav class="admin-navbar">
             <div class="nav-brand">
-                <i class="fa-solid fa-building"></i>
+                <i data-lucide="building-2" class="icon"></i>
                 פורטל ניהול
             </div>
-            <div class="nav-links">
-                <a href="index.html" class="active"><i class="fa-solid fa-chart-simple"></i> לוח בקרה</a>
-            </div>
             <div class="nav-actions">
-                <button class="btn btn-secondary" onclick="refreshData()">
-                    <i class="fa-solid fa-rotate-right"></i> רענן
+                <button class="btn btn-ghost btn-sm" onclick="refreshData()">
+                    <i data-lucide="refresh-cw" class="icon-sm"></i> רענן
                 </button>
-                <button class="btn btn-secondary" onclick="logout()">
-                    <i class="fa-solid fa-right-from-bracket"></i> התנתק
+                <button class="btn btn-ghost btn-sm" onclick="logout()">
+                    <i data-lucide="log-out" class="icon-sm"></i> התנתק
                 </button>
             </div>
         </nav>
 
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab('dashboard')"><i class="fa-solid fa-chart-simple"></i> לוח בקרה
-            </div>
-            <div class="tab" onclick="switchTab('import')"><i class="fa-solid fa-upload"></i> הוספת לקוחות</div>
-            <div class="tab" onclick="switchTab('send')"><i class="fa-solid fa-envelope"></i> שליחת שאלונים</div>
+        <div class="tabs-nav">
+            <button class="tab-item active" onclick="switchTab('dashboard')"><i data-lucide="bar-chart-3" class="icon-sm"></i> לוח בקרה</button>
+            <button class="tab-item" onclick="switchTab('import')"><i data-lucide="upload" class="icon-sm"></i> הוספת לקוחות</button>
+            <button class="tab-item" onclick="switchTab('send')"><i data-lucide="mail" class="icon-sm"></i> שליחת שאלונים</button>
         </div>
 
         <div class="content">
@@ -60,47 +58,46 @@
                 <div class="stats-grid" id="statsGrid">
                     <div class="stat-card" onclick="toggleStageFilter('')" ondblclick="toggleStageFilter('')">
                         <div class="stat-number" id="stat-total">-</div>
-                        <div class="stat-label">סה"כ לקוחות</div>
+                        <div class="stat-label"><i data-lucide="users" class="icon-sm"></i> סה"כ לקוחות</div>
                     </div>
                     <div class="stat-card stage-1" onclick="toggleStageFilter('1')" ondblclick="toggleStageFilter('')">
                         <div class="stat-number" id="stat-stage1">-</div>
-                        <div class="stat-label"><i class="fa-solid fa-clipboard-list"></i> ממתינים לשליחה</div>
+                        <div class="stat-label"><i data-lucide="clipboard-list" class="icon-sm"></i> ממתינים לשליחה</div>
                     </div>
                     <div class="stat-card stage-2" onclick="toggleStageFilter('2')" ondblclick="toggleStageFilter('')">
                         <div class="stat-number" id="stat-stage2">-</div>
-                        <div class="stat-label"><i class="fa-solid fa-hourglass-half"></i> ממתינים לתשובה</div>
+                        <div class="stat-label"><i data-lucide="hourglass" class="icon-sm"></i> ממתינים לתשובה</div>
                     </div>
                     <div class="stat-card stage-3" onclick="toggleStageFilter('3')" ondblclick="toggleStageFilter('')">
                         <div class="stat-number" id="stat-stage3">-</div>
-                        <div class="stat-label"><i class="fa-solid fa-folder-open"></i> אוספים מסמכים</div>
+                        <div class="stat-label"><i data-lucide="folder-open" class="icon-sm"></i> אוספים מסמכים</div>
                     </div>
                     <div class="stat-card stage-4" onclick="toggleStageFilter('4')" ondblclick="toggleStageFilter('')">
                         <div class="stat-number" id="stat-stage4">-</div>
-                        <div class="stat-label"><i class="fa-solid fa-magnifying-glass"></i> בבדיקה</div>
+                        <div class="stat-label"><i data-lucide="search" class="icon-sm"></i> בבדיקה</div>
                     </div>
                     <div class="stat-card stage-5" onclick="toggleStageFilter('5')" ondblclick="toggleStageFilter('')">
                         <div class="stat-number" id="stat-stage5">-</div>
-                        <div class="stat-label"><i class="fa-solid fa-check-circle"></i> הושלם</div>
+                        <div class="stat-label"><i data-lucide="circle-check" class="icon-sm"></i> הושלם</div>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="card-header">
-                        <h2><i class="fa-solid fa-users"></i> רשימת לקוחות</h2>
-                        <button class="btn btn-outline" onclick="exportToExcel()">
-                            <i class="fa-solid fa-download"></i> ייצוא לאקסל
+                        <h2><i data-lucide="users" class="icon"></i> רשימת לקוחות</h2>
+                        <button class="btn btn-secondary" onclick="exportToExcel()">
+                            <i data-lucide="download" class="icon-sm"></i> ייצוא לאקסל
                         </button>
                     </div>
                     <div class="card-body">
                         <div class="filters">
                             <div class="filter-group">
-                                <label><i class="fa-solid fa-magnifying-glass"></i> חיפוש:</label>
+                                <label><i data-lucide="search" class="icon-sm"></i> חיפוש:</label>
                                 <input type="text" id="searchInput" placeholder="שם או אימייל..."
                                     oninput="filterClients()">
                             </div>
-                            <!-- Fixed: stageFilter moved correctly here -->
                             <div class="filter-group">
-                                <label><i class="fa-solid fa-filter"></i> סינון:</label>
+                                <label><i data-lucide="filter" class="icon-sm"></i> סינון:</label>
                                 <select id="stageFilter" onchange="filterClients()">
                                     <option value="">הכל</option>
                                     <option value="1">ממתינים לשליחה</option>
@@ -111,7 +108,7 @@
                                 </select>
                             </div>
                             <div class="filter-group">
-                                <label><i class="fa-solid fa-calendar"></i> שנה:</label>
+                                <label><i data-lucide="calendar" class="icon-sm"></i> שנה:</label>
                                 <select id="yearFilter" onchange="filterClients()">
                                     <option value="">הכל</option>
                                     <option value="2025" selected>2025</option>
@@ -121,7 +118,7 @@
 
                         <div id="clientsTableContainer">
                             <div class="empty-state">
-                                <div class="empty-state-icon"><i class="fa-solid fa-chart-bar"></i></div>
+                                <div class="empty-state-icon"><i data-lucide="bar-chart" class="icon-2xl"></i></div>
                                 <p>טוען נתונים...</p>
                             </div>
                         </div>
@@ -133,37 +130,34 @@
             <div id="tab-import" class="tab-content">
                 <div class="card">
                     <div class="card-header">
-                        <h2><i class="fa-solid fa-upload"></i> הוספת לקוחות</h2>
+                        <h2><i data-lucide="upload" class="icon"></i> הוספת לקוחות</h2>
                         <div class="header-actions">
-                            <button class="btn btn-outline" id="btn-mode-manual" onclick="setAddMode('manual')"><i
-                                    class="fa-solid fa-plus"></i> הוספה ידנית</button>
+                            <button class="btn btn-secondary" id="btn-mode-manual" onclick="setAddMode('manual')"><i
+                                    data-lucide="plus" class="icon-sm"></i> הוספה ידנית</button>
                             <button class="btn btn-primary" id="btn-mode-import" onclick="setAddMode('import')"
-                                disabled><i class="fa-solid fa-file-excel"></i> ייבוא מאקסל</button>
+                                disabled><i data-lucide="file-spreadsheet" class="icon-sm"></i> ייבוא מאקסל</button>
                         </div>
                     </div>
                     <div class="card-body">
                         <!-- Manual Section -->
-                        <div id="section-manual" style="display: none; padding: 20px;">
-                            <div class="filters"
-                                style="flex-direction: column; align-items: stretch; max-width: 500px; margin: 0 auto; gap: 20px;">
-                                <div class="filter-group" style="flex-direction: column; align-items: start;">
-                                    <label>שם מלא:</label>
-                                    <input type="text" id="manualName" placeholder="ישראל ישראלי" style="width: 100%;">
+                        <div id="section-manual" class="manual-section">
+                            <div class="manual-form">
+                                <div class="form-field">
+                                    <label class="form-label">שם מלא:</label>
+                                    <input type="text" id="manualName" placeholder="ישראל ישראלי">
                                 </div>
-                                <div class="filter-group" style="flex-direction: column; align-items: start;">
-                                    <label>אימייל:</label>
-                                    <input type="text" id="manualEmail" placeholder="israel@example.com"
-                                        style="width: 100%;">
+                                <div class="form-field">
+                                    <label class="form-label">אימייל:</label>
+                                    <input type="text" id="manualEmail" placeholder="israel@example.com">
                                 </div>
-                                <div class="filter-group" style="flex-direction: column; align-items: start;">
-                                    <label>שנת דוח:</label>
-                                    <select id="manualYear" style="width: 100%;">
+                                <div class="form-field">
+                                    <label class="form-label">שנת דוח:</label>
+                                    <select id="manualYear">
                                         <option value="2025" selected>2025</option>
                                     </select>
                                 </div>
-                                <button class="btn btn-success" onclick="addManualClient()"
-                                    style="margin-top: 10px; width: 100%; justify-content: center;">
-                                    <i class="fa-solid fa-rocket"></i> הוסף למערכת
+                                <button class="btn btn-success w-full" onclick="addManualClient()">
+                                    <i data-lucide="zap" class="icon-sm"></i> הוסף למערכת
                                 </button>
                             </div>
                         </div>
@@ -172,19 +166,19 @@
                         <div id="section-import">
                             <div class="upload-zone" id="uploadZone"
                                 onclick="document.getElementById('fileInput').click()">
-                                <div class="upload-zone-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                                <div class="upload-zone-icon"><i data-lucide="upload-cloud" class="icon-2xl"></i></div>
                                 <h3>גרור קובץ Excel לכאן</h3>
                                 <p>או לחץ לבחירת קובץ</p>
-                                <button class="btn btn-primary"><i class="fa-solid fa-paperclip"></i> בחר
+                                <button class="btn btn-primary"><i data-lucide="paperclip" class="icon-sm"></i> בחר
                                     קובץ</button>
                                 <input type="file" id="fileInput" accept=".xlsx,.xls,.csv"
                                     onchange="handleFileSelect(event)">
                             </div>
 
-                            <div class="import-options" style="margin-top: 20px;">
-                                <h4><i class="fa-solid fa-list-check"></i> פורמט נדרש:</h4>
+                            <div class="import-options">
+                                <h4><i data-lucide="list-checks" class="icon-sm"></i> פורמט נדרש:</h4>
                                 <p>קובץ Excel עם שתי עמודות:</p>
-                                <table style="margin-top: 10px;">
+                                <table class="table mt-3">
                                     <thead>
                                         <tr>
                                             <th>name</th>
@@ -205,8 +199,8 @@
                             </div>
 
                             <div id="previewSection" class="preview-section">
-                                <div class="card-header" style="padding: 0; border: none; margin-bottom: 20px;">
-                                    <h2><i class="fa-solid fa-eye"></i> תצוגה מקדימה</h2>
+                                <div class="preview-header">
+                                    <h2><i data-lucide="eye" class="icon"></i> תצוגה מקדימה</h2>
                                 </div>
 
                                 <div class="preview-stats">
@@ -229,17 +223,17 @@
                                 </div>
 
                                 <div class="import-options">
-                                    <h4><i class="fa-solid fa-gear"></i> הגדרות ייבוא:</h4>
+                                    <h4><i data-lucide="settings" class="icon-sm"></i> הגדרות ייבוא:</h4>
                                     <div class="option-row">
-                                        <label>📅 שנת דוח:</label>
+                                        <label><i data-lucide="calendar" class="icon-sm"></i> שנת דוח:</label>
                                         <select id="importYear">
                                             <option value="2025" selected>2025</option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div style="overflow-x: auto; margin-top: 20px;">
-                                    <table id="previewTable">
+                                <div class="table-wrapper mt-4">
+                                    <table id="previewTable" class="table">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -252,13 +246,13 @@
                                     </table>
                                 </div>
 
-                                <div style="margin-top: 25px; display: flex; gap: 15px; justify-content: center;">
+                                <div class="preview-actions">
                                     <button class="btn btn-success" id="importBtn" onclick="startImport()">
-                                        <i class="fa-solid fa-check"></i> ייבא <span id="importCount">0</span>
+                                        <i data-lucide="check" class="icon-sm"></i> ייבא <span id="importCount">0</span>
                                         לקוחות
                                     </button>
-                                    <button class="btn btn-outline" onclick="clearPreview()">
-                                        <i class="fa-solid fa-xmark"></i> בטל
+                                    <button class="btn btn-secondary" onclick="clearPreview()">
+                                        <i data-lucide="x" class="icon-sm"></i> בטל
                                     </button>
                                 </div>
                             </div>
@@ -271,34 +265,34 @@
             <div id="tab-send" class="tab-content">
                 <div class="card">
                     <div class="card-header">
-                        <h2><i class="fa-solid fa-paper-plane"></i> שליחת שאלונים</h2>
+                        <h2><i data-lucide="send" class="icon"></i> שליחת שאלונים</h2>
                     </div>
                     <div class="card-body">
                         <div class="filters">
                             <div class="filter-group">
-                                <label>📅 שנה:</label>
+                                <label><i data-lucide="calendar" class="icon-sm"></i> שנה:</label>
                                 <select id="sendYearFilter">
                                     <option value="2025" selected>2025</option>
                                 </select>
                             </div>
                             <button class="btn btn-primary" onclick="loadPendingClients()">
-                                <i class="fa-solid fa-rotate-right"></i> טען לקוחות ממתינים
+                                <i data-lucide="refresh-cw" class="icon-sm"></i> טען לקוחות ממתינים
                             </button>
                         </div>
 
                         <div id="pendingClientsContainer">
                             <div class="empty-state">
-                                <div class="empty-state-icon"><i class="fa-solid fa-inbox"></i></div>
+                                <div class="empty-state-icon"><i data-lucide="inbox" class="icon-2xl"></i></div>
                                 <p>טוען נתונים...</p>
                             </div>
                         </div>
 
-                        <div id="sendActions" style="display: none; margin-top: 25px; text-align: center;">
+                        <div id="sendActions" class="send-actions">
                             <button class="btn btn-success" onclick="sendToSelected()">
-                                <i class="fa-solid fa-paper-plane"></i> שלח לנבחרים (<span id="selectedCount">0</span>)
+                                <i data-lucide="send" class="icon-sm"></i> שלח לנבחרים (<span id="selectedCount">0</span>)
                             </button>
                             <button class="btn btn-primary" onclick="sendToAll()">
-                                <i class="fa-solid fa-envelope-open-text"></i> שלח לכולם
+                                <i data-lucide="mail" class="icon-sm"></i> שלח לכולם
                             </button>
                         </div>
                     </div>
@@ -310,7 +304,7 @@
     <!-- Loading Overlay -->
     <div id="loadingOverlay" class="loading-overlay">
         <div class="loading-box">
-            <div class="spinner"></div>
+            <div class="spinner spinner-lg"></div>
             <p id="loadingText">מעבד...</p>
         </div>
     </div>
@@ -318,7 +312,7 @@
     <!-- Result Modal -->
     <div id="resultModal" class="modal">
         <div class="modal-content">
-            <div class="modal-icon" id="modalIcon"><i class="fa-solid fa-check-circle"></i></div>
+            <div class="modal-icon" id="modalIcon"><i data-lucide="circle-check" class="icon-2xl"></i></div>
             <h2 class="modal-title" id="modalTitle">הושלם בהצלחה!</h2>
             <div class="modal-body" id="modalBody"></div>
             <div class="modal-stats" id="modalStats"></div>
